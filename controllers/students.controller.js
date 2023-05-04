@@ -3,7 +3,7 @@ const studentData = require("../data/students.json");
 const StudentsController = {
     getAll: function(req, res) {
         let offset = 0;
-        let count = 2;
+        let count = 3;
 
         if(res.query && req.query.offset) {
             offset = req.params.offset;

@@ -24,11 +24,12 @@ const GamesController = {
         res.status(200).json(game);
     },
     getMultiply: function(req, res) {
-        const offet = req.params.offset;
+        const offset = parseInt(req.params.offset);
         let count = 2;
         if(req.query && req.query.count){
-            count = req.query.count;
+            count = parseInt(req.query.count);
         }
+        console.log(offset + count);
         res.status(200).json(gamesData.splice(offset, offset + count));
     },
     addGame: function(req, res) {
