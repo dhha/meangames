@@ -30,7 +30,7 @@ const GamesController = {
             count = parseInt(req.query.count);
         }
         console.log(offset + count);
-        res.status(200).json(gamesData.splice(offset, offset + count));
+        res.status(200).send(offset *  count);
     },
     addGame: function(req, res) {
         console.log("req.body", req.body);
