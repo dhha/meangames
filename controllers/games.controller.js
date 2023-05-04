@@ -29,7 +29,6 @@ const GamesController = {
         if(req.query && req.query.count){
             count = parseInt(req.query.count);
         }
-        console.log(offset + count);
         res.status(200).send(offset *  count);
     },
     addGame: function(req, res) {
