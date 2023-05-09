@@ -1,8 +1,14 @@
-const express = require("express");
+
 require("dotenv").config();
+require("./data/dbconnection").open();
+require("./data/db");
+
+const express = require("express");
+
 const path = require("path");
 const routes = require("./routes");
 const app = express();
+
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 

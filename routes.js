@@ -11,8 +11,12 @@ router.route("/json").get(function(req, res) {
 router.route("/games").get(GamesController.getAll)
     .post(GamesController.addGame);
     
-// router.route("/games/:id").get(GamesController.getGame);
-router.route("/games/:offset").get(GamesController.getMultiply);
+router.route("/games/:id").get(GamesController.getGame);
+// router.route("/games/:offset").get(GamesController.getMultiply);
+router.route("/games/:id")
+    .delete(GamesController.deleteGame)
+    .put(GamesController.fullUpdate)
+    .patch(GamesController.partialUpdate);
 
 router.route("/students").get(StudentsController.getAll);
 router.route("/students/:studenIndex").get(StudentsController.getIndex)
