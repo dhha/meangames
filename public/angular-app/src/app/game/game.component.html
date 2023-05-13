@@ -1,0 +1,13 @@
+
+<h1>{{game.title}}</h1>
+<p><app-starts-rating [rating]="game.rate"></app-starts-rating></p>
+<p>Price: {{game.price}}</p>
+<p>Year: {{game.year}}</p>
+<p>rate: {{game.rate}}</p>
+<p>min player: {{game.minPlayer}}</p>
+<p>max player: {{game.maxPlayer}}</p>
+<p>Publisher: {{game.publisher? game.publisher.name : ""}}</p>
+
+<p>
+    <button (click)="deleteOne()">Delete</button>
+</p>

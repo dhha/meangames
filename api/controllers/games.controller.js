@@ -1,6 +1,16 @@
 const mongoose = require("mongoose");
 const gameModel = mongoose.model("Game");
 
+const dosomething = function(err, updatedGame, res) {
+    console.log("Callback something")
+    const response = {status: 200, message: updatedGame};
+    if(err) {
+        response.status = 500;
+        response.message = err;
+    }
+    res.status(response.status).json(response.message);
+}
+
 const _updateOne = function(req, res, updateCallback) {
     const id = req.params.id;
     gameModel.findById(id).exec(function(err, game) {
@@ -17,14 +27,7 @@ const _updateOne = function(req, res, updateCallback) {
             res.status(response.status).json(response.message);
         } else {
             updateCallback(req, game);
-            game.save(function(err, updatedGame) {
-                const response = {status: 200, message: updatedGame};
-                if(err) {
-                    response.status = 500;
-                    response.message = err;
-                }
-                res.status(response.status).json(response.message);
-            })
+            game.save(dosomething(...arguments, res))
         }
     });
 };
@@ -33,7 +36,7 @@ const GamesController = {
     getAll: function(req, res) {
 
         let offset = 0;
-        let count = 5;
+        let count = 10;
         if(req.query && req.query.offset) {
             offset = req.query.offset;
         }
@@ -61,7 +64,15 @@ const GamesController = {
             minDistance = req.query.min_distance;
         }
 
+        let name = null;
+        if(req.query && req.query.search) {
+            name = req.query.search;
+        }
+
         let queryString = {};
+        if(name) {
+            queryString = {"title": {$regex: name, $options: 'i'}};
+        }
         if(lat && lng) {
             queryString = {
                 "publisher.location.coordinates": {
@@ -74,7 +85,7 @@ const GamesController = {
                 }
             }
         } 
-
+        console.log("queryString", queryString);
         gameModel.find(queryString).skip(offset).limit(count).exec(function(err, games) {
             res.status(200).json(games);
         });

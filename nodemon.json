@@ -1,0 +1,6 @@
+{
+    "signal": "SIGHUP",
+    "env": {
+        "NOVE_ENV": "development"
+    }
+}

@@ -1,4 +1,4 @@
-const studentData = require("../data/students.json");
+//const studentData = require("../data/students.json");
 
 const StudentsController = {
     getAll: function(req, res) {

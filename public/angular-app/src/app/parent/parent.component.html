@@ -1,0 +1,6 @@
+<p>parent works!</p>
+<p>ParentX: {{parentX}}</p>
+<p>ParentX: {{parentY}}</p>
+<p>ParentZ: {{parentZ}}</p>
+
+<app-child [childX]="parentX" [childY]="parentY" (addEvent)="addParent($event)"></app-child>

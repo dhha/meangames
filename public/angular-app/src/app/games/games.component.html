@@ -1,0 +1,18 @@
+<div class="mb-4">
+    <input placeholder="Search game" name="search" [(ngModel)]="search"/> <button (click)="onSearch()">Search</button>
+</div>
+
+Select limitation: 
+<select (change)="onChange($event)">
+    <option *ngFor="let i of limits">{{i}}</option>
+</select>
+
+<ul>
+    <li *ngFor="let game of games">
+        <a routerLink="/game/{{game._id}}">{{game.title}} </a> 
+        <app-starts-rating [rating]="game.rate"></app-starts-rating> 
+        <button (click)="deleteOne(game._id)">Delete</button>
+    </li>
+</ul>
+
+<app-pagination [currentOffset]="currentOffset" [limit]="limit" [resultCount]="resultCount" (backEvent)="backPage($event)" (forWardEvent)="nextPage($event)"></app-pagination>

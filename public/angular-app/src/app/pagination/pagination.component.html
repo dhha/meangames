@@ -1,0 +1,12 @@
+Page: 
+<nav>
+    <button *ngIf="currentOffset == 0; else backBlock" disabled>Back</button>
+    <ng-template #backBlock>
+        <button (click)="goBack()">Back</button>
+    </ng-template>
+
+    <button *ngIf="resultCount >= limit; else nextBlock" (click)="goForWard()">Next</button>
+    <ng-template #nextBlock>
+        <button disabled>Next</button>
+    </ng-template>
+</nav>
